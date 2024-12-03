@@ -9,7 +9,7 @@ namespace Z_ParkRest.Model
         {
             User user = new User
             {
-                LicensePlate = dto.LicensePlate,
+                Licenseplate = dto.LicensePlate,
                 Name = dto.Name,
                 Surname = dto.Surname,
                 Mail = dto.Mail,

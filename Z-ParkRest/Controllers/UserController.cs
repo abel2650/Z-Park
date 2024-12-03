@@ -57,7 +57,7 @@ namespace Z_ParkRest.Controllers
             try
             {
                 User newUser = _repo.Add(user);
-                return Created($"api/Users/{newUser.LicensePlate}", newUser);
+                return Created($"api/Users/{newUser.Licenseplate}", newUser);
             }
             catch (ArgumentException ae)
             {

@@ -5,7 +5,7 @@ public class User
     
 
     // instans felter
-    private string _licensePlate;
+    private string _licenseplate;
     private string _name;
     private string _surname;
     private string _mail;
@@ -13,16 +13,16 @@ public class User
     private string _password;
 
     // properties
-    public string LicensePlate 
+    public string Licenseplate 
     { 
-        get { return _licensePlate; } 
+        get { return _licenseplate; } 
         set 
         { 
             if (value.ToString().Length != 7) 
             {
                 throw new ArgumentException("Nummerplade skal være 7 tegn!");
             }
-            _licensePlate = value; 
+            _licenseplate = value; 
         } 
     }
 
@@ -75,7 +75,7 @@ public class User
 
     public User(string licenseplate, string name, string surname, string mail, string username, string password)
     {
-        LicensePlate = licenseplate;
+        Licenseplate = licenseplate;
         Name = name;
         Surname = surname;
         Mail = mail;
@@ -87,6 +87,7 @@ public class User
 
     public override string ToString()
     {
-        return $"{Name} {Surname}, Username: {Username}, Email: {Mail}, License Plate: {LicensePlate}";
+        return
+            $"{nameof(_licenseplate)}: {_licenseplate}, {nameof(_name)}: {_name}, {nameof(_surname)}: {_surname}, {nameof(_mail)}: {_mail}, {nameof(_username)}: {_username}, {nameof(_password)}: {_password}, {nameof(Licenseplate)}: {Licenseplate}, {nameof(Name)}: {Name}, {nameof(Surname)}: {Surname}, {nameof(Mail)}: {Mail}, {nameof(Username)}: {Username}, {nameof(Password)}: {Password}";
     }
 }
