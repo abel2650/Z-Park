@@ -12,7 +12,7 @@ public partial class EFUserContext : DbContext
         : base(options)
     {
     }
-               // her laver vi en tabel i databasen
+               // den bliver brugt til repræsentere tabellen 
     public virtual DbSet<User> Users { get; set; }
 
 
