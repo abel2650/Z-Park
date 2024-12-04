@@ -67,7 +67,7 @@ public class User
         { 
             if (value.Length <= 8)
             {
-                throw new ArgumentException("Kode skal være 8 tegn eller mindre!");
+                throw new ArgumentException("Kode skal være mere end 8 tegn!");
             }
             _password = value; 
         } 
