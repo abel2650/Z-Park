@@ -12,7 +12,7 @@ namespace Z_ParkLib.repositories.Tests
     public class UserRepositoryTests
     {
         private UserRepository _emptyRepo;
-        private UserRepository _repo3members;
+        private UserRepository _repo3users;
         private User _User2;
 
         [TestInitialize]
@@ -21,10 +21,10 @@ namespace Z_ParkLib.repositories.Tests
         {
             _emptyRepo = new UserRepository();
 
-            _repo3members = new UserRepository();
-            _repo3members.Add(new User("AB12345", "Bobby", "Olsen", "Bobby@mail.dk", "BobbyO", "Kodeord123"));
-            _repo3members.Add(new User("CD12345", "Frank", "Hvam", "Frank@mail.com", "FrankHvam", "Frank007"));
-            _repo3members.Add(new User("EF12345", "Søren", "Lerby", "Lerby@mail.dk", "ForSøren", "Danmark!"));
+            _repo3users = new UserRepository();
+            _repo3users.Add(new User("AB12345", "Bobby", "Olsen", "Bobby@mail.dk", "BobbyO", "Kodeord123"));
+            _repo3users.Add(new User("CD12345", "Frank", "Hvam", "Frank@mail.com", "FrankHvam", "Frank007"));
+            _repo3users.Add(new User("EF12345", "Søren", "Lerby", "Lerby@mail.dk", "ForSøren", "Danmark!"));
 
             _User2 = new User("GH12345", "Anja", "Andersen", "Anja@mail.dk", "AnjaAndersen", "Håndbold");
         }
@@ -44,7 +44,7 @@ namespace Z_ParkLib.repositories.Tests
 
             //Act
             int actualEmptyCount = _emptyRepo.GetAll().Count;
-            int actual3Count = _repo3members.GetAll().Count;
+            int actual3Count = _repo3users.GetAll().Count;
 
             //Assert
             Assert.AreEqual(expectedEmptyCount, actualEmptyCount);
@@ -63,7 +63,7 @@ namespace Z_ParkLib.repositories.Tests
             string expectedLicenseplate = licenseplate;
 
             //Act
-            User fundet = _repo3members.GetById(licenseplate);
+            User fundet = _repo3users.GetById(licenseplate);
 
             //Assert
             Assert.AreEqual(expectedLicenseplate, fundet.Licenseplate);
@@ -76,7 +76,25 @@ namespace Z_ParkLib.repositories.Tests
 
 
         [TestMethod()]
-        public void UserRepositoryAddTest()
+        [DataRow("4")]
+        public void UserRepositoryGetByIdNotFoundTest(string licenseplate)
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.ThrowsException<KeyNotFoundException>(() => _emptyRepo.GetById(licenseplate));
+            Assert.ThrowsException<KeyNotFoundException>(() => _repo3users.GetById(licenseplate));
+        }
+
+        /*
+         * 
+         * Add
+         * 
+         */
+
+        public void UserRepositoryAddTest() 
         {
             //Arrange
 
@@ -84,9 +102,6 @@ namespace Z_ParkLib.repositories.Tests
 
             //Assert
         }
-
-
-
 
         [TestMethod()]
         public void UserRepositoryUpdateTest()
