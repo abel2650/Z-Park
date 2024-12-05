@@ -94,13 +94,27 @@ namespace Z_ParkLib.repositories.Tests
          * 
          */
 
-        public void UserRepositoryAddTest() 
+        [TestMethod()]
+        [DataRow("AA11122", "NewUser", "User","umail@mail.dk", "EUserame", "EPassword")]
+        public void UserRepositoryAddTest(string newLicenseplate, string newName, string newSurname, string newMail, string newUsername, string newPassword) 
         {
             //Arrange
+            User newUserEmpty = new User(newLicenseplate, newName, newSurname, newMail, newUsername, newPassword);
+            int expectedLengthEmpty = 1;
+
+            User newUser3User = new User(newLicenseplate, newName, newSurname, newMail, newUsername, newPassword);
+            int expectedLength3User = 4;
 
             //Act
+            User addUserEmpty = _emptyRepo.Add(newUserEmpty);
+            User addUser3User = _repo3users.Add(newUser3User);
+
+            int actualLengthEmpty = _emptyRepo.GetAll().Count();
+            int actualLength3User = _repo3users.GetAll().Count();
 
             //Assert
+            Assert.AreEqual(expectedLengthEmpty, actualLengthEmpty);
+            Assert.AreEqual(expectedLength3User, actualLength3User);
         }
 
         [TestMethod()]
