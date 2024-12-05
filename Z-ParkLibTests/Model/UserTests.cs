@@ -186,7 +186,7 @@ namespace Z_ParkLib.Tests
             //Assert
             Assert.AreEqual(expectedPassword, user.Password);
         }
-
+        
         [TestMethod()]
         [DataRow("")]
         [DataRow("!")]
