@@ -124,17 +124,7 @@ namespace Z_ParkLib.repositories.Tests
          */
 
         [TestMethod()]
-        public void UserRepositoryDeleteTest()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-        }
-
-        [TestMethod()]
-        public void UserRepositoryDeleteNotOkTest()
+        public void UserRepositoryDeleteIsOkTest()
         {
             //Arrange
             int expectedLength1 = 2;
@@ -163,10 +153,26 @@ namespace Z_ParkLib.repositories.Tests
         public void UserRepositoryUpdateTest()
         {
             //Arrange
+            User updatedUser = new User("AB12345", "Bobby", "Olsen", "Bobby@mail.dk", "BobbyO", "Kodeord123");
 
             //Act
+            User result = _repo3users.Update("AB12345", updatedUser);
+            User actualUser = _repo3users.GetById("AB12345");
 
             //Assert
+            Assert.AreEqual(updatedUser.Licenseplate, result.Licenseplate);
+            Assert.AreEqual(updatedUser.Name, result.Name);
+            Assert.AreEqual(updatedUser.Surname, result.Surname);
+            Assert.AreEqual(updatedUser.Mail, result.Mail);
+            Assert.AreEqual(updatedUser.Username, result.Username);
+            Assert.AreEqual(updatedUser.Password, result.Password);
+
+            Assert.AreEqual(updatedUser.Licenseplate, actualUser.Licenseplate);
+            Assert.AreEqual(updatedUser.Name, actualUser.Name);
+            Assert.AreEqual(updatedUser.Surname, actualUser.Surname);
+            Assert.AreEqual(updatedUser.Mail, actualUser.Mail);
+            Assert.AreEqual(updatedUser.Username, actualUser.Username);
+            Assert.AreEqual(updatedUser.Password, actualUser.Password);
         }
     }
 }
