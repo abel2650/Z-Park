@@ -74,5 +74,37 @@ namespace Z_ParkLib.Tests
             //Act + Assert
             Assert.ThrowsException<ArgumentException>( () => user.Name = name);
         }
+
+        [TestMethod()]
+        [DataRow("Hartmann")]
+        [DataRow("Mårtensen")]
+        [DataRow("Bo")]
+        public void UserSurnameIsOk(string surname)
+        {
+            //Arrange
+            User user = new User();
+            string expectedSurname = surname;
+
+            //Act
+            user.Surname = surname;
+
+            //Assert
+            Assert.AreEqual(expectedSurname, user.Surname);
+        }
+
+        [TestMethod()]
+        [DataRow("A")]
+        [DataRow("")]
+        [DataRow("123")]
+        [DataRow("!Frederiksen")]
+        public void UserSurnameIsNotOk(string surname)
+        {
+            //Arrange
+            User user = new User();
+            string expectedSurname = surname;
+
+            //Act + Assert
+            Assert.ThrowsException<ArgumentException>(() => user.Surname = surname);
+        }
     }
 }

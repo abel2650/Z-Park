@@ -110,7 +110,7 @@ public class User
         Password = password;
     }
 
-    public User() : this("ACH3456", "Dummy", "Dummy Nielsen", "Dummy_911@hotmail.com", "DummyNielsen", "123456789") { }
+    public User() : this("ACH3456", "Dummy", "Nielsen", "Dummy_911@hotmail.com", "DummyNielsen", "123456789") { }
 
     public override string ToString()
     {
