@@ -2,7 +2,7 @@ namespace Z_ParkLib.repositories
 {
     public class UserRepository : IUserRepository
     {
-        // Instansfelterrrrr
+        // Instansfelter
         private readonly List<User> _users;
 
         public UserRepository(bool mockData = false)
