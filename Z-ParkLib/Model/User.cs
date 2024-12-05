@@ -52,10 +52,17 @@ public class User
         get => _surname;
         set
         {
-            if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
+            if (string.IsNullOrWhiteSpace(value) || value.Length < 2)
             {
-                throw new ArgumentException("Efternavn skal være mere end 3 tegn.");
+                throw new ArgumentException("Efternavn skal være mere end 2 tegn.");
             }
+
+            // Tjek for ugyldige tegn
+            if (!System.Text.RegularExpressions.Regex.IsMatch(value, @"^[a-zA-ZæøåÆØÅ]+$"))
+            {
+                throw new ArgumentException("Efternavn må kun indeholde bogstaver.");
+            }
+
             _surname = value;
         }
     }
