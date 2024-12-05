@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Z_ParkLib;
 using Z_ParkLib.repositories;
+using Z_ParkRest.Model;
 
 namespace Z_ParkRest.Controllers
 
@@ -32,7 +33,7 @@ namespace Z_ParkRest.Controllers
         }
 
         // GET api/<UsersController>/ABC1234
-        [HttpGet("{licensePlate}")]
+        [HttpGet("{licenseplate}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Get(string licensePlate)
@@ -52,28 +53,31 @@ namespace Z_ParkRest.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post([FromBody] User user)
+        public IActionResult Post([FromBody] UserDTO userdto)
         {
             try
             {
-                User newUser = _repo.Add(user);
+                User newUser = UserConverter.DTO2User(userdto);
+                
+                newUser = _repo.Add(newUser);
                 return Created($"api/Users/{newUser.Licenseplate}", newUser);
             }
             catch (ArgumentException ae)
             {
                 return BadRequest(ae.Message);
             }
-        }
+        } 
 
         // PUT api/<UsersController>/ABC1234
-        [HttpPut("{licensePlate}")]
+        [HttpPut("{licenseplate}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Put(string licensePlate, [FromBody] User updatedUser)
+        public IActionResult Put(string licensePlate, [FromBody] UserDTO dto)
         {
             try
             {
+                User updatedUser = UserConverter.DTO2User(dto);
                 try
                 {
                     User user = _repo.Update(licensePlate, updatedUser);
@@ -91,7 +95,7 @@ namespace Z_ParkRest.Controllers
         }
 
         // DELETE api/<UsersController>/ABC1234
-        [HttpDelete("{licensePlate}")]
+        [HttpDelete("{licenseplate}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Delete(string licensePlate)
