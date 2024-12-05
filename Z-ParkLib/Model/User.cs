@@ -20,7 +20,7 @@ public class User
         { 
             if (string.IsNullOrWhiteSpace(value) || value.Length != 7) 
             {
-                throw new ArgumentException("Nummerplade skal være 7 tegn!");
+                throw new ArgumentException("Nummerplade skal være 7 tegn.");
             }
             _licenseplate = value; 
         } 
@@ -31,12 +31,20 @@ public class User
         get => _name;
         set
         {
-            if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
+            if (string.IsNullOrWhiteSpace(value) || value.Length < 2)
             {
-                throw new ArgumentException("Navn skal være mere end 3 tegn");
+                throw new ArgumentException("Navn skal være mere end 2 tegn.");
             }
+
+            // Tjek for ugyldige tegn
+            if (!System.Text.RegularExpressions.Regex.IsMatch(value, @"^[a-zA-ZæøåÆØÅ]+$"))
+            {
+                throw new ArgumentException("Navn må kun indeholde bogstaver.");
+            }
+
             _name = value;
         }
+
     }
 
     public string Surname  
@@ -46,7 +54,7 @@ public class User
         {
             if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
             {
-                throw new ArgumentException("Efternavn skal være mere end 3 tegn");
+                throw new ArgumentException("Efternavn skal være mere end 3 tegn.");
             }
             _surname = value;
         }
@@ -67,7 +75,7 @@ public class User
         {
             if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
             {
-                throw new ArgumentException("Brugernavn skal være mere end 3 tegn");
+                throw new ArgumentException("Brugernavn skal være mere end 3 tegn.");
             }
             _username = value;
         }
@@ -79,7 +87,7 @@ public class User
         {
             if (string.IsNullOrWhiteSpace(value) || value.Length < 5)
             {
-                throw new ArgumentException("Kodeordet skal være mere end 5 tegn");
+                throw new ArgumentException("Kodeordet skal være mere end 5 tegn.");
             }
             _password = value;
         }
