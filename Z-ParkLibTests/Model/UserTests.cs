@@ -72,7 +72,7 @@ namespace Z_ParkLib.Tests
             string expectedName = name;
 
             //Act + Assert
-            Assert.ThrowsException<ArgumentException>( () => user.Name = name);
+            Assert.ThrowsException<ArgumentException>(() => user.Name = name);
         }
 
         [TestMethod()]
@@ -167,7 +167,7 @@ namespace Z_ParkLib.Tests
             string expectedUsername = username;
 
             //Act + Assert
-            Assert.ThrowsException<ArgumentException>( () => user.Username = username);
+            Assert.ThrowsException<ArgumentException>(() => user.Username = username);
         }
 
         [TestMethod()]
@@ -185,6 +185,20 @@ namespace Z_ParkLib.Tests
 
             //Assert
             Assert.AreEqual(expectedPassword, user.Password);
+        }
+
+        [TestMethod()]
+        [DataRow("")]
+        [DataRow("!")]
+        [DataRow("Kim!")]
+        public void UserPasswordIsNotOk(string password)
+        {
+            //Arrange
+            User user = new User();
+            string expectedPassword = password;
+
+            //Act + Assert
+            Assert.ThrowsException<ArgumentException>(() => user.Password = password);
         }
     }
 }
