@@ -15,7 +15,7 @@ public class UserRepositoryDB : IUserRepository
 
     public User Add(User newUser)
     {
-    newUser.LicensePlate = "0";
+    newUser.Licenseplate = "0";
     _db.Users.Add(newUser);
     _db.SaveChanges();
 
@@ -39,7 +39,7 @@ public class UserRepositoryDB : IUserRepository
 
     public User GetById(string licensePlate)
     {
-        User? user = _db.Users.FirstOrDefault(u => u.LicensePlate == licensePlate);
+        User? user = _db.Users.FirstOrDefault(u => u.Licenseplate == licensePlate);
 
         if (user == null)
         {
@@ -52,7 +52,7 @@ public class UserRepositoryDB : IUserRepository
     public User Update(string licensePlate, User updatedUser)
     {
         User user = GetById(licensePlate);
-        user.LicensePlate = updatedUser.LicensePlate;
+        user.Licenseplate = updatedUser.Licenseplate;
 
         user.Name = updatedUser.Name;
         user.Surname = updatedUser.Surname;

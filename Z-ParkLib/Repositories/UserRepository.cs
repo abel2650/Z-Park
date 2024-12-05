@@ -29,7 +29,7 @@ namespace Z_ParkLib.repositories
 
         public User GetById(string licensePlate)
         {
-            User? user = _users.Find(u => u.LicensePlate == licensePlate);
+            User? user = _users.Find(u => u.Licenseplate == licensePlate);
 
             if (user == null)
             {
@@ -40,9 +40,9 @@ namespace Z_ParkLib.repositories
 
         public User Add(User user)
         {
-            if (_users.Any(u => u.LicensePlate == user.LicensePlate))
+            if (_users.Any(u => u.Licenseplate == user.Licenseplate))
             {
-                throw new ArgumentException($"Bruger med nummerplade '{user.LicensePlate}' eksisterer allerede.");
+                throw new ArgumentException($"Bruger med nummerplade '{user.Licenseplate}' eksisterer allerede.");
             }
 
             _users.Add(user);
