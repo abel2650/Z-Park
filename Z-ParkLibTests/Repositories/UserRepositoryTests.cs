@@ -117,8 +117,14 @@ namespace Z_ParkLib.repositories.Tests
             Assert.AreEqual(expectedLength3User, actualLength3User);
         }
 
+        /*
+         * 
+         * Delete
+         * 
+         */
+
         [TestMethod()]
-        public void UserRepositoryUpdateTest()
+        public void UserRepositoryDeleteTest()
         {
             //Arrange
 
@@ -127,11 +133,34 @@ namespace Z_ParkLib.repositories.Tests
             //Assert
         }
 
+        [TestMethod()]
+        public void UserRepositoryDeleteNotOkTest()
+        {
+            //Arrange
+            int expectedLength1 = 2;
+            int expectedLength2 = 1;
 
+            //Act
+            User deletedUser1 = _repo3users.Delete("CD12345");
+            int actualLength1 = _repo3users.GetAll().Count;
+            User deletedUser2 = _repo3users.Delete("EF12345");
+            int actualLength2 = _repo3users.GetAll().Count;
 
+            //Assert
+            Assert.IsNotNull(deletedUser1);
+            Assert.IsNotNull(deletedUser2);
+            Assert.AreEqual(expectedLength1, actualLength1);
+            Assert.AreEqual(expectedLength2, actualLength2);
+        }
+
+        /*
+         * 
+         * Update
+         * 
+         */
 
         [TestMethod()]
-        public void UserRepositoryDeleteTest()
+        public void UserRepositoryUpdateTest()
         {
             //Arrange
 
