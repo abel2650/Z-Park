@@ -36,9 +36,19 @@ namespace Z_ParkLib.repositories.Tests
          */
 
         [TestMethod()]
-        public void UserRepositoryTest()
+        public void UserRepositoryGetAllTest()
         {
-            Assert.Fail();
+            //Arrange
+            int expectedEmptyCount = 0;
+            int expected3Count = 3;
+
+            //Act
+            int actualEmptyCount = _emptyRepo.GetAll().Count;
+            int actual3Count = _repo3members.GetAll().Count;
+
+            //Assert
+            Assert.AreEqual(expectedEmptyCount, actualEmptyCount);
+            Assert.AreEqual(expected3Count, actual3Count);
         }
 
         [TestMethod()]
