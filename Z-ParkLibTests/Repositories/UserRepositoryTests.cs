@@ -50,35 +50,65 @@ namespace Z_ParkLib.repositories.Tests
             Assert.AreEqual(expectedEmptyCount, actualEmptyCount);
             Assert.AreEqual(expected3Count, actual3Count);
         }
-
+        /*
+         * 
+         * GetAllByLicenseplate
+         * 
+         */
         [TestMethod()]
-        public void GetAllTest()
+        [DataRow("AB12345", "Bobby", "Olsen", "Bobby@mail.dk", "BobbyO", "Kodeord123")]
+        public void UserRepositoryGetByIdTest(string licenseplate, string expectedName, string expectedSurname, string expectedMail, string expectedUsername, string expectedPassword)
         {
-            Assert.Fail();
+            //Arrange
+            string expectedLicenseplate = licenseplate;
+
+            //Act
+            User fundet = _repo3members.GetById(licenseplate);
+
+            //Assert
+            Assert.AreEqual(expectedLicenseplate, fundet.Licenseplate);
+            Assert.AreEqual(expectedName, fundet.Name);
+            Assert.AreEqual(expectedSurname, fundet.Surname);
+            Assert.AreEqual(expectedMail, fundet.Mail);
+            Assert.AreEqual(expectedUsername, fundet.Username);
         }
 
-        [TestMethod()]
-        public void GetByIdTest()
-        {
-            Assert.Fail();
-        }
+
 
         [TestMethod()]
-        public void AddTest()
+        public void UserRepositoryAddTest()
         {
-            Assert.Fail();
+            //Arrange
+
+            //Act
+
+            //Assert
         }
 
-        [TestMethod()]
-        public void UpdateTest()
-        {
-            Assert.Fail();
-        }
+
+
 
         [TestMethod()]
-        public void DeleteTest()
+        public void UserRepositoryUpdateTest()
         {
-            Assert.Fail();
+            //Arrange
+
+            //Act
+
+            //Assert
+        }
+
+
+
+
+        [TestMethod()]
+        public void UserRepositoryDeleteTest()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
         }
     }
 }
