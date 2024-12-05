@@ -16,7 +16,7 @@ namespace Z_ParkLib.Tests
         [DataRow("AB12345")]
         [DataRow("CD12345")]
         [DataRow("EF12394")]
-        public void UserLicenseplateOk(string licenseplate)
+        public void UserLicenseplateIsOk(string licenseplate)
         {
             //Arrange
             User user = new User();
@@ -33,7 +33,7 @@ namespace Z_ParkLib.Tests
         [DataRow("A")]
         [DataRow("B12345")]
         [DataRow("AB412345")]
-        public void UserLicenseplateNotOk(string licenseplate)
+        public void UserLicenseplateIsNotOk(string licenseplate)
         {
             //Arrange
             User user = new User();
@@ -139,5 +139,24 @@ namespace Z_ParkLib.Tests
             //Act + Assert
             Assert.ThrowsException<ArgumentException>(() => user.Mail = mail);
         }
+
+        [TestMethod()]
+        [DataRow("Bobby123")]
+        [DataRow("Frankie")]
+        [DataRow("DemonSlayer5000")]
+        public void UserUsernameIsOk(string username)
+        {
+            //Arrange
+            User user = new User();
+            string expectedUsername = username;
+
+            //Act
+            user.Username = username;
+
+            //Assert
+            Assert.AreEqual(expectedUsername, user.Username);
+        }
+
+
     }
 }
