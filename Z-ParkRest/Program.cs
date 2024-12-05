@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Z_ParkLib;
 using Z_ParkLib.repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,8 +9,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Register dependencies
-builder.Services.AddSingleton<UserRepository>(new UserRepository(mockData: true)); // Med mockdata for testing
+// Register DbContext
+string? consString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<EFUserContext>(options =>
+    options.UseSqlServer(consString));
+
+
+// Register UserRepositoryDB
+builder.Services.AddScoped<UserRepositoryDB>();
 
 var app = builder.Build();
 
