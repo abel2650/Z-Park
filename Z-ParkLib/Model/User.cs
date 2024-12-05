@@ -67,14 +67,28 @@ public class User
         }
     }
 
-    public string Mail  
-    { 
-        get { return _mail; } 
-        set 
-        { 
-            _mail = value; 
-        } 
+    public string Mail
+    {
+        get => _mail;
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException("Email må ikke være tom.");
+            }
+
+            // Brug en regex til at validere emailens format
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                    value,
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                throw new ArgumentException("Email skal have et gyldigt format (f.eks. navn@domæne.dk).");
+            }
+
+            _mail = value;
+        }
     }
+
     public string Username  
     {
         get => _username;
