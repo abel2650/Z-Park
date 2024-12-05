@@ -157,6 +157,17 @@ namespace Z_ParkLib.Tests
             Assert.AreEqual(expectedUsername, user.Username);
         }
 
+        [TestMethod()]
+        [DataRow("")]
+        [DataRow("A")]
+        public void UserUsernameIsNotOk(string username)
+        {
+            //Arrange
+            User user = new User();
+            string expectedUsername = username;
 
+            //Act + Assert
+            Assert.ThrowsException<ArgumentException>( () => user.Username = username);
+        }
     }
 }
