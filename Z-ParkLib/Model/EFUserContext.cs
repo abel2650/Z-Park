@@ -18,9 +18,19 @@ public partial class EFUserContext : DbContext
 
 // Defaultconnection er navnet på appsetings.json som den finder selv
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("DefaultConnection");
+        => optionsBuilder.UseSqlServer();
     
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.Licenseplate).HasName("PK__Users__026BC15D25643BB3");
+        });
 
+        OnModelCreatingPartial(modelBuilder);
+    }
 
-    
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
+
+    

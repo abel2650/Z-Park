@@ -8,11 +8,11 @@ namespace Z_ParkRest.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]   
-    public class UsersController : ControllerBase
+    public class UsersControllerDb : ControllerBase
     {
-        private readonly UserRepository _repo;
+        private readonly UserRepositoryDB _repo;
 
-        public UsersController(UserRepository repo)
+        public UsersControllerDb(UserRepositoryDB repo)
         {
             _repo = repo;
         }
