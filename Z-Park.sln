@@ -1,8 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Z-ParkRest", "Z-ParkRest\Z-ParkRest.csproj", "{7D987AD1-FE9D-4ABC-A4EE-A1C45BD99528}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Z-ParkRest", "Z-ParkRest\Z-ParkRest.csproj", "{7D987AD1-FE9D-4ABC-A4EE-A1C45BD99528}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Z-ParkLib", "Z-ParkLib\Z-ParkLib.csproj", "{9E55E67E-2F85-4E48-9F39-60F835452314}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Z-ParkLib", "Z-ParkLib\Z-ParkLib.csproj", "{9E55E67E-2F85-4E48-9F39-60F835452314}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Z-ParkLibTests", "Z-ParkLibTests\Z-ParkLibTests.csproj", "{562E0F35-5F0C-467C-A35C-846F440142BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +23,12 @@ Global
 		{9E55E67E-2F85-4E48-9F39-60F835452314}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E55E67E-2F85-4E48-9F39-60F835452314}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E55E67E-2F85-4E48-9F39-60F835452314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{562E0F35-5F0C-467C-A35C-846F440142BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{562E0F35-5F0C-467C-A35C-846F440142BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{562E0F35-5F0C-467C-A35C-846F440142BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{562E0F35-5F0C-467C-A35C-846F440142BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

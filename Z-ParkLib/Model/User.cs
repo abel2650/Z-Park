@@ -18,30 +18,53 @@ public class User
         get { return _licenseplate; } 
         set 
         { 
-            if (value.ToString().Length != 7) 
+            if (string.IsNullOrWhiteSpace(value) || value.Length != 7) 
             {
-                throw new ArgumentException("Nummerplade skal være 7 tegn!");
+                throw new ArgumentException("Nummerplade skal være 7 tegn.");
             }
             _licenseplate = value; 
         } 
     }
 
     public string Name  
-    { 
-        get { return _name; } 
-        set 
-        { 
-            _name = value; 
-        } 
+    {
+        get => _name;
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value) || value.Length < 2)
+            {
+                throw new ArgumentException("Navn skal være mere end 2 tegn.");
+            }
+
+            // Tjek for ugyldige tegn
+            if (!System.Text.RegularExpressions.Regex.IsMatch(value, @"^[a-zA-ZæøåÆØÅ]+$"))
+            {
+                throw new ArgumentException("Navn må kun indeholde bogstaver.");
+            }
+
+            _name = value;
+        }
+
     }
 
     public string Surname  
-    { 
-        get { return _surname; } 
-        set 
-        { 
-            _surname = value; 
-        } 
+    {
+        get => _surname;
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value) || value.Length < 2)
+            {
+                throw new ArgumentException("Efternavn skal være mere end 2 tegn.");
+            }
+
+            // Tjek for ugyldige tegn
+            if (!System.Text.RegularExpressions.Regex.IsMatch(value, @"^[a-zA-ZæøåÆØÅ]+$"))
+            {
+                throw new ArgumentException("Efternavn må kun indeholde bogstaver.");
+            }
+
+            _surname = value;
+        }
     }
 
     public string Mail  
@@ -53,24 +76,28 @@ public class User
         } 
     }
     public string Username  
-    { 
-        get { return _username; } 
-        set 
-        { 
-            _username = value; 
-        } 
+    {
+        get => _username;
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
+            {
+                throw new ArgumentException("Brugernavn skal være mere end 3 tegn.");
+            }
+            _username = value;
+        }
     }
     public string Password 
-    { 
-        get { return _password; } 
-        set 
-        { 
-            if (value.Length <= 8)
+    {
+        get => _password;
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value) || value.Length < 5)
             {
-                throw new ArgumentException("Kode skal være mere end 8 tegn!");
+                throw new ArgumentException("Kodeordet skal være mere end 5 tegn.");
             }
-            _password = value; 
-        } 
+            _password = value;
+        }
     }
 
     public User(string licenseplate, string name, string surname, string mail, string username, string password)
@@ -83,7 +110,7 @@ public class User
         Password = password;
     }
 
-    public User() : this("ACH3456", "Dummy", "Dummy Nielsen", "Dummy_911@hotmail.com", "DummyNielsen", "123456789") { }
+    public User() : this("ACH3456", "Dummy", "Nielsen", "Dummy_911@hotmail.com", "DummyNielsen", "123456789") { }
 
     public override string ToString()
     {
