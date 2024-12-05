@@ -169,5 +169,22 @@ namespace Z_ParkLib.Tests
             //Act + Assert
             Assert.ThrowsException<ArgumentException>( () => user.Username = username);
         }
+
+        [TestMethod()]
+        [DataRow("EtEllerAndet")]
+        [DataRow("Kodeord123")]
+        [DataRow("!Kodeord?")]
+        public void UserPasswordIsOk(string password)
+        {
+            //Arrange
+            User user = new User();
+            string expectedPassword = password;
+
+            //Act
+            user.Password = password;
+
+            //Assert
+            Assert.AreEqual(expectedPassword, user.Password);
+        }
     }
 }
