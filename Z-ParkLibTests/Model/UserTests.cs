@@ -13,23 +13,34 @@ namespace Z_ParkLib.Tests
     public class UserTests
     {
         [TestMethod()]
-        public void UserLicensePlateOk()
+        [DataRow("AB12345")]
+        [DataRow("CD12345")]
+        [DataRow("EF12394")]
+        public void UserLicenseplateOk(string licenseplate)
         {
             //Arrange
             User user = new User();
-            string expectedLicensePlate = "AB12345";
+            string expectedLicenseplate = licenseplate;
 
             //Act
-            user.LicensePlate = "AB12345";
+            user.Licenseplate = licenseplate;
 
             //Assert
-            Assert.AreEqual(expectedLicensePlate, user.LicensePlate);
+            Assert.AreEqual(expectedLicenseplate, user.Licenseplate);
         }
 
         [TestMethod()]
-        public void UserTest1()
+        [DataRow("A")]
+        [DataRow("B12345")]
+        [DataRow("AB412345")]
+        public void UserLicenseplateNotOk(string licenseplate)
         {
-            Assert.Fail();
+            //Arrange
+            User user = new User();
+            string expectedLicenseplate = licenseplate;
+
+            //Act + Assert
+            Assert.ThrowsException<ArgumentException>(() => user.Licenseplate = licenseplate);
         }
 
         [TestMethod()]
