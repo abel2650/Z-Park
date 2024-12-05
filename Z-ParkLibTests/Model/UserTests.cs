@@ -106,5 +106,38 @@ namespace Z_ParkLib.Tests
             //Act + Assert
             Assert.ThrowsException<ArgumentException>(() => user.Surname = surname);
         }
+
+        [TestMethod()]
+        [DataRow("Marcus@eksempel.dk")]
+        [DataRow("Rebin@nyteksempel.com")]
+        [DataRow("Niklas@heltnyteksempel.se")]
+        public void UserMailIsOk(string mail)
+        {
+            //Arrange
+            User user = new User();
+            string expectedMail = mail;
+
+            //Act
+            user.Mail = mail;
+
+            //Assert
+            Assert.AreEqual(expectedMail, user.Mail);
+        }
+
+        [TestMethod()]
+        [DataRow("A")]
+        [DataRow("Bob @ frank. Yes")]
+        [DataRow("Bobby@maildk")]
+        [DataRow("Lottemail.dk")]
+        [DataRow("")]
+        public void UserMailIsNotOk(string mail)
+        {
+            //Arrange
+            User user = new User();
+            string expectedMail = mail;
+
+            //Act + Assert
+            Assert.ThrowsException<ArgumentException>(() => user.Mail = mail);
+        }
     }
 }
