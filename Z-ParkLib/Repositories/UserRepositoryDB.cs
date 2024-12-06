@@ -1,5 +1,6 @@
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.EntityFrameworkCore;
+using Z_ParkLib.Model;
 
 namespace Z_ParkLib.repositories;
 

@@ -1,4 +1,4 @@
-﻿namespace Z_ParkLib;
+﻿namespace Z_ParkLib.Model;
 
 public class User
 {

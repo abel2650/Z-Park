@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Z_ParkLib.Model;
 
 namespace Z_ParkLib;
 // Denne klasse konfigurerer entity framework til user databasen

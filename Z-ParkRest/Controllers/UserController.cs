@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Z_ParkLib;
+using Z_ParkLib.Model;
 using Z_ParkLib.repositories;
 using Z_ParkRest.Model;
 

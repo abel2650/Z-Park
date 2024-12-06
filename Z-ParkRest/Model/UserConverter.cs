@@ -1,4 +1,5 @@
 using Z_ParkLib;
+using Z_ParkLib.Model;
 
 namespace Z_ParkRest.Model
 
