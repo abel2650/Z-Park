@@ -18,6 +18,17 @@ builder.Services.AddDbContext<EFUserContext>(options =>
 // Register UserRepositoryDB
 builder.Services.AddScoped<UserRepositoryDB>();
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin() // Tillader alle domæner (frontend på localhost osv.)
+            .AllowAnyMethod() // Tillader GET, POST, PUT, DELETE osv.
+            .AllowAnyHeader(); // Tillader alle headers (Authorization, Content-Type osv.)
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
@@ -26,6 +37,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//Cors allow all
+app.UseCors("AllowAll");
 
 app.UseRouting();
 
