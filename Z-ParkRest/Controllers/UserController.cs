@@ -61,7 +61,8 @@ namespace Z_ParkRest.Controllers
                 User newUser = UserConverter.DTO2User(userdto);
                 
                 newUser = _repo.Add(newUser);
-                return Created($"api/Users/{newUser.Licenseplate}", newUser);
+                //return Created($"api/Users/{newUser.Licenseplate}", newUser);
+                return Ok(newUser);
             }
             catch (ArgumentException ae)
             {

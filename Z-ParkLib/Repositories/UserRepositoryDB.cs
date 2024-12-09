@@ -16,7 +16,7 @@ public class UserRepositoryDB : IUserRepository
 
     public User Add(User newUser)
     {
-    newUser.Licenseplate = "0";
+    //newUser.Licenseplate = "0";
     _db.Users.Add(newUser);
     _db.SaveChanges();
 

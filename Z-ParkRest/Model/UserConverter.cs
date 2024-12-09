@@ -1,4 +1,3 @@
-using Z_ParkLib;
 using Z_ParkLib.Model;
 
 namespace Z_ParkRest.Model
@@ -8,16 +7,14 @@ namespace Z_ParkRest.Model
     {
         public static User DTO2User(UserDTO dto)
         {
-            User user = new User
-            {
-                Licenseplate = dto.Licenseplate,
-                Name = dto.Name,
-                Surname = dto.Surname,
-                Mail = dto.Mail,
-                Username = dto.Username,
-                Password = dto.Password
-            };
+            User user = new User();
 
+            user.Licenseplate = dto.Licenseplate;
+            user.Name = dto.Name;
+            user.Surname = dto.Surname;
+            user.Mail = dto.Mail;
+            user.Username = dto.Username;
+            user.Password = dto.Password;
             return user;
         }
     }
