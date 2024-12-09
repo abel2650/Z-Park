@@ -1,9 +1,7 @@
-﻿namespace Z_ParkLib;
+﻿namespace Z_ParkLib.Model;
 
 public class User
 {
-    
-
     // instans felter
     private string _licenseplate;
     private string _name;

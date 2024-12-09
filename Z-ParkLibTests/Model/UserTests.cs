@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO.Pipes;
+using Z_ParkLib.Model;
 
 namespace Z_ParkLib.Tests
 {
