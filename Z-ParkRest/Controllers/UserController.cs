@@ -54,6 +54,8 @@ namespace Z_ParkRest.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+        //NY POST METODE til handle url, fp og hente data databse login og true eller false  return true eller false bolean
         public IActionResult Post([FromBody] UserDTO userdto)
         {
             try
