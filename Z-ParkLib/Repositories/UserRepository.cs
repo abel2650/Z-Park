@@ -67,5 +67,10 @@ namespace Z_ParkLib.repositories
             return user;
         }
 
+        public bool ValidateUser(string licensePlate, string password)
+        {
+            User? user = _users.FirstOrDefault(u => u.Licenseplate == licensePlate);
+            return user != null && user.Password == password;
+        }
     }
 }

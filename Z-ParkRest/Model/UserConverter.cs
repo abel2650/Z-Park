@@ -9,12 +9,12 @@ namespace Z_ParkRest.Model
         {
             User user = new User();
 
-            user.Licenseplate = dto.Licenseplate;
+            user.Licenseplate = dto.licenseplate;
             user.Name = dto.Name;
             user.Surname = dto.Surname;
             user.Mail = dto.Mail;
             user.Username = dto.Username;
-            user.Password = dto.Password;
+            user.Password = dto.password;
             return user;
         }
     }
