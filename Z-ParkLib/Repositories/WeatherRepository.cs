@@ -40,7 +40,7 @@ public class WeatherRepository : IWeatherRepository
             
             if (weather == null)
             {
-                throw new KeyNotFoundException($"hvis du kigger ud så er der '{sun}' udenfor ");
+                throw new KeyNotFoundException($"hvis du kigger ud, så skinner '{sun}' ");
             }
             return weather;
         }

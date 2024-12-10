@@ -20,16 +20,15 @@ public class WeatherController : ControllerBase
         {
             string apiKey = "f12adcb1-0bcb-4d7b-ad45-b8475b0f12fd"; // API key til ForecastDataAPI (personlig)
             string stationId = "06170";     // Replace with the station ID for Roskilde Lufthavn
-            
             //Bruges som "Endpoint" til at connecte til DMI's URL.
             string endpoint = $"https://dmigw.govcloud.dk/v2/metObs/collections/observation/items?stationId={stationId}&api-key={apiKey}";
 
-            //Anbefalet metoder til at indhendte API'er 
+            //Anbefalet metoder til at indhente API'er.
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
-                    //Sender en HTTP GET-anmodning til definere Endpoint. vores endpoint fra før (DMI's. hjemmeside)
+                    //Sender en HTTP GET-anmodning til definere Endpoint. Vores endpoint fra før (DMI's. hjemmeside)
                     //HttpResponseMessage venter på Objekt response .Result blokere tråden indtil response fuldført.
                     HttpResponseMessage response = client.GetAsync(endpoint).Result;
 
