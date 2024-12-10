@@ -13,7 +13,6 @@ public class UserRepositoryDB : IUserRepository
         _db = dbContext;
     }
 
-
     public User Add(User newUser)
     {
     //newUser.Licenseplate = "0";
@@ -31,7 +30,6 @@ public class UserRepositoryDB : IUserRepository
 
         return u;
     }
-
     
     public List<User> GetAll()
     {
