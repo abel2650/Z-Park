@@ -66,9 +66,9 @@ public class UserRepositoryDB : IUserRepository
         return user;
     }
 
-    public bool ValidateUser(string licensePlate, string password)
+   /* public bool ValidateUser(string username, string password)
     {
-        User? user = _db.Users.FirstOrDefault(u => u.Licenseplate == licensePlate);
+        User? user = _db.Users.FirstOrDefault(u => u.Username == username);
         return user != null && user.Password == password;
-    }
+    }  */
 }

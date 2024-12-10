@@ -9,6 +9,6 @@ namespace Z_ParkLib.repositories
         User Add(User user);
         User Update(string licensePlate, User updatedUser);
         User Delete(string licensePlate);
-        bool ValidateUser(string username, string password);
+       // bool ValidateUser(string username, string password);
     }
 }
