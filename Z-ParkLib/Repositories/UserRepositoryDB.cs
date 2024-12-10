@@ -63,4 +63,10 @@ public class UserRepositoryDB : IUserRepository
         _db.SaveChanges();
         return user;
     }
+
+   /* public bool ValidateUser(string username, string password)
+    {
+        User? user = _db.Users.FirstOrDefault(u => u.Username == username);
+        return user != null && user.Password == password;
+    }  */
 }
