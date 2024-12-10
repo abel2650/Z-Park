@@ -54,6 +54,8 @@ namespace Z_ParkRest.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+        //NY POST METODE til handle url, fp og hente data databse login og true eller false  return true eller false bolean
         public IActionResult Post([FromBody] UserDTO userdto)
         {
             try
@@ -110,6 +112,33 @@ namespace Z_ParkRest.Controllers
             catch (KeyNotFoundException)
             {
                 return NotFound();
+            }
+        }
+
+// POST api/<UsersController>/login
+        [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
+        public IActionResult Login([FromBody] UserDTO userdto)
+        {
+            try
+            {
+                User user = _repo.GetById(userdto.licenseplate);
+                if (user != null && user.Password == userdto.password)
+                {
+                    return Ok(true);
+                }
+                return Unauthorized("Forkert brugernavn eller kodeord");
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound("Ingen bruger tilknyttet den nummerplade");
+            }
+            catch (ArgumentException ae)
+            {
+                return BadRequest("Du skal skrive en nummerplade");
             }
         }
     }

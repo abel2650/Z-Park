@@ -13,7 +13,6 @@ public class UserRepositoryDB : IUserRepository
         _db = dbContext;
     }
 
-
     public User Add(User newUser)
     {
     //newUser.Licenseplate = "0";
@@ -31,7 +30,6 @@ public class UserRepositoryDB : IUserRepository
 
         return u;
     }
-
     
     public List<User> GetAll()
     {
@@ -65,4 +63,10 @@ public class UserRepositoryDB : IUserRepository
         _db.SaveChanges();
         return user;
     }
+
+   /* public bool ValidateUser(string username, string password)
+    {
+        User? user = _db.Users.FirstOrDefault(u => u.Username == username);
+        return user != null && user.Password == password;
+    }  */
 }

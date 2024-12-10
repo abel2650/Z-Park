@@ -37,6 +37,7 @@ namespace Z_ParkLib.repositories
             {
                 throw new KeyNotFoundException($"Bruger med nummerplade '{licensePlate}' ikke fundet.");
             }
+
             return user;
         }
 
@@ -62,8 +63,14 @@ namespace Z_ParkLib.repositories
         public User Delete(string licensePlate)
         {
             User user = GetById(licensePlate); // throw KeyNotFoundException
-             _users.Remove(user);
+            _users.Remove(user);
             return user;
+        }
+
+        public bool ValidateUser(string licensePlate, string password)
+        {
+            User? user = _users.FirstOrDefault(u => u.Licenseplate == licensePlate);
+            return user != null && user.Password == password;
         }
     }
 }
