@@ -1,0 +1,6 @@
+@Z_ParkRest_HostAddress = https://dmigw.govcloud.dk/v2/metObs/collections
+
+GET {{Z_ParkRest_HostAddress}}
+Accept: application/json
+
+###
