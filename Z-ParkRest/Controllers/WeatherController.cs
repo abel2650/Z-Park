@@ -1,48 +1,57 @@
 using Microsoft.AspNetCore.Mvc;
+using Z_ParkLib.repositories;
 
 namespace Z_ParkRest.Controllers;
 
+[ApiController]
+[Route("[controller]")]
 public class WeatherController : ControllerBase
     {
-        
-        [HttpGet] //Web-API til get metode
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        
-        public void WeatherApi (string[] args)
-        {
-            string apiKey = "f12adcb1-0bcb-4d7b-ad45-b8475b0f12fd"; // API key til ForecastDataAPI (personlig)
-            string stationId = "06170";     // Replace with the station ID for Roskilde Lufthavn
-            //Bruges som "Endpoint" til at connected til DMIs URL.
-            string endpoint = $"https://dmigw.govcloud.dk/v2/metObs/collections/observation/items?stationId={stationId}&api-key={apiKey}";
-
-            //Anbefalet metoder til at indhente API'er.
-            using HttpClient client = new HttpClient();
-            try
+        private readonly IConfiguration _configuration;
+            public WeatherController (IConfiguration configuration)
             {
-                //Sender en HTTP GET-anmodning til definere Endpoint. Vores endpoint fra før (DMIs. Hjemmeside)
-                //HttpResponseMessage venter på Objekt response.Result blokere tråden indtil response fuldført.
-                HttpResponseMessage response = client.GetAsync(endpoint).Result;
-
-                //kontrollere statuskoden, hvor mellem 200-299 = succes
-                if (response.IsSuccessStatusCode)
-                {
-                    //Læser indholdet af svaret som en tekststreng.
-                    string responseData = response.Content.ReadAsStringAsync().Result;
-                    Console.WriteLine($"Her er Data: {responseData}");
-                }
-                else
-                {
-                    //fejlmeddelelse 
-                    Console.WriteLine($"Fejl: {response.StatusCode}");
-                }
-                    
+                _configuration = configuration;
             }
+
+            [HttpGet("GetWeatherData")]
+            public async Task<IActionResult> GetWeatherData(string stationId)
+            {
+                // Configurations filerne er i Appsettings.Json
+                string baseUrl = _configuration["DMI:BaseUrl"];
+                string apiKey = _configuration["DMI:ApiKey"];
+
+                // Validere stationsID'et
+                if (string.IsNullOrEmpty(stationId))
+                {
+                    return BadRequest("Station ID is required.");
+                }
+
+                // Endpoint URL, for destinationen af data vi gerne vil tilgå
+                string endpoint = $"{baseUrl}?stationId={stationId}&api-key={apiKey}";
                 
-            //fejlmeddelelse 
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Fejl: {ex.Message}");
+                //https://dmigw.govcloud.dk/v2/metObs/api?stationId=60170&api-key=c40648c9-9bfc-4e59-b799-eda802a602d2
+
+                using (HttpClient client = new HttpClient())
+                {
+                    try
+                    {
+                        // vores HTTP GET-request
+                        HttpResponseMessage response = await client.GetAsync(endpoint);
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string responseData = await response.Content.ReadAsStringAsync();
+
+                            return Ok(responseData); // Returnere "rå" vejrdata.
+                        }
+
+                        return StatusCode((int)response.StatusCode, $"Error: {response.ReasonPhrase}");
+                    }
+                    
+                    catch (Exception ex)
+                    {
+                        return StatusCode(500, $"Internal server error: {ex.Message}");
+                    }
+                }
             }
-        }
     }
