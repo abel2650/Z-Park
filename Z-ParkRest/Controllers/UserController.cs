@@ -34,7 +34,7 @@ namespace Z_ParkRest.Controllers
         }
 
         // GET api/<UsersController>/ABC1234
-        [HttpGet("{licenseplate}")]
+        [HttpGet("{licensePlate}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Get(string licensePlate)
@@ -73,7 +73,7 @@ namespace Z_ParkRest.Controllers
         } 
 
         // PUT api/<UsersController>/ABC1234
-        [HttpPut("{licenseplate}")]
+        [HttpPut("{licensePlate}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -99,7 +99,7 @@ namespace Z_ParkRest.Controllers
         }
 
         // DELETE api/<UsersController>/ABC1234
-        [HttpDelete("{licenseplate}")]
+        [HttpDelete("{licensePlate}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Delete(string licensePlate)
