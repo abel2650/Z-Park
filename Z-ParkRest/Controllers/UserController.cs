@@ -117,29 +117,45 @@ namespace Z_ParkRest.Controllers
 
 // POST api/<UsersController>/login
         [HttpPost("login")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-        public IActionResult Login([FromBody] UserDTO userdto)
+[ProducesResponseType(StatusCodes.Status200OK)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
+[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
+public IActionResult Login([FromBody] UserDTO userdto)
+{
+    try
+    {
+        // Hent brugeren baseret på nummerpladen
+        User user = _repo.GetById(userdto.licenseplate);
+
+        // Valider adgangskoden
+        if (user != null && user.Password == userdto.password)
         {
-            try
+            // Returner brugerdetaljer som JSON
+            return Ok(new
             {
-                User user = _repo.GetById(userdto.licenseplate);
-                if (user != null && user.Password == userdto.password)
-                {
-                    return Ok(true);
-                }
-                return Unauthorized("Forkert brugernavn eller kodeord");
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound("Ingen bruger tilknyttet den nummerplade");
-            }
-            catch (ArgumentException ae)
-            {
-                return BadRequest("Du skal skrive en nummerplade");
-            }
+                username = user.Username,
+                name = user.Name,
+                surname = user.Surname,
+                mail = user.Mail,
+                licenseplate = user.Licenseplate
+            });
         }
+
+        // Returner Unauthorized, hvis adgangskoden er forkert
+        return Unauthorized("Forkert brugernavn eller kodeord");
+    }
+    catch (KeyNotFoundException)
+    {
+        // Hvis nummerpladen ikke findes
+        return NotFound("Ingen bruger tilknyttet den nummerplade");
+    }
+    catch (ArgumentException ae)
+    {
+        // Hvis nummerplade ikke er angivet
+        return BadRequest("Du skal skrive en nummerplade");
+    }
+}
+
     }
 }
