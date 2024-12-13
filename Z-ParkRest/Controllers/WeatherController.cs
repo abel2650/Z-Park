@@ -44,7 +44,7 @@ public class WeatherController : ControllerBase
                 {
                     try
                     {
-                        // vores HTTP GET-request
+                        //Vores HTTP GET-request
                         HttpResponseMessage response = await client.GetAsync(endpoint);
                         
                         //hvis APi-kaldet har en kodestatus på 200, er den succesfuldt og føres videre.
