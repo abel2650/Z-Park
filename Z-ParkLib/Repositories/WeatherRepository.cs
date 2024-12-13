@@ -17,7 +17,7 @@ public class WeatherRepository : IWeatherRepository
 
             if (weather == null)
             {
-                throw new KeyNotFoundException($" vejret '{temperature}' ikke fundet.");
+                throw new KeyNotFoundException($"vejret '{temperature}' ikke fundet.");
             }
             return weather;
         }
